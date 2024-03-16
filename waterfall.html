@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts - Waterfall</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <h2></h2>
+
+		<!-- <h2>Waterfall</h2> -->
+		<div id="main" style="width: 600px;height:400px;"></div>
+		
+		<!-- <h2>Customized Pie</h2> -->
+		<div id="secondary" style="width: 600px;height:400px;"></div>
+
+		<!-- <h2>Chart</h2> -->
+		<div id="third" style="width: 600px;height:400px;"></div>
+
+
+    <script type="text/javascript">
+      // Initialize the echarts instance based on the prepared dom
+      var myBar = echarts.init(document.getElementById('main'));
+
+      // Specify the configuration items and data for the chart
+      var data = [400, -34, 393, -108, -154, 135, 178, 286, -119, -361, -203];
+			var help = [];
+			var positive = [];
+			var negative = [];
+			for (var i = 0, sum = 0; i < data.length; ++i) {
+			if (data[i] >= 0) {
+				positive.push(data[i]);
+				negative.push('-');
+			} else {
+				positive.push('-');
+				negative.push(-data[i]);
+			}
+
+			if (i === 0) {
+				help.push(0);
+			} else {
+				sum += data[i - 1];
+				if (data[i] < 0) {
+				help.push(sum + data[i]);
+				} else {
+				help.push(sum);
+				}
+			}
+			}
+
+			option = {
+			title: {
+				text: 'Waterfall'
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'category',
+				splitLine: { show: false },
+				data: (function() {
+				var list = [];
+				for (var i = 1; i <= 11; i++) {
+					list.push('Oct/' + i);
+				}
+				return list;
+				})()
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+				{
+				type: 'bar',
+				stack: 'all',
+				itemStyle: {
+					normal: {
+					barBorderColor: 'rgba(0,0,0,0)',
+					color: 'rgba(0,0,0,0)'
+					},
+					emphasis: {
+					barBorderColor: 'rgba(0,0,0,0)',
+					color: 'rgba(0,0,0,0)'
+					}
+				},
+				data: help
+				},
+				{
+				name: 'positive',
+				type: 'bar',
+				stack: 'all',
+				data: positive
+				},
+				{
+				name: 'negative',
+				type: 'bar',
+				stack: 'all',
+				data: negative,
+				itemStyle: {
+					color: '#f33'
+				}
+				}
+			]
+			};
+
+		// var myPie2 = echarts.init(document.getElementById('secondary'));
+		// var myPie3 = echarts.init(document.getElementById('third'));
+      	// Display the chart using the configuration items and data just specified.
+		
+		myBar.setOption(option);
+		// myPie2.setOption(option2);
+		// myPie3.setOption(option3);
+      
+    </script>
+  </body>
+	
+</html>

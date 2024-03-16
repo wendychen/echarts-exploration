@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>LINE - Basic Line</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <h2></h2>
+
+		<h2>Cessna 172</h2>
+		<div id="main" style="width: 600px;height:400px;"></div>
+
+    <script type="text/javascript">
+		var myLineChart = echarts.init(document.getElementById('main'));
+
+      // Initialize the echarts instance based on the prepared dom
+	  /*
+		Hydraulic System 液壓系統
+		Fuel Pump 燃油泵
+		Fuel Sump 機油箱
+
+	  */
+	  option = {
+		xAxis: {
+			type: 'category',
+			data: ['Hydraulic System', 'Fuel Pump', 'Fuel Sump']
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+			data: [1, 2, 13],
+			type: 'line'
+			}
+		]
+	  };
+      // Specify the configuration items and data for the chart
+    
+      	// Display the chart using the configuration items and data just specified.
+		
+		myLineChart.setOption(option);
+		
+      
+    </script>
+  </body>
+	
+</html>

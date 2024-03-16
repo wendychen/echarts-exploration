@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts - Basic Bar</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <h2></h2>
+
+		<h2>Price of Capsule During a Week</h2>
+		<div id="main" style="width: 600px;height:400px;"></div>
+		
+		<h2>Multi-series Bar Chart</h2>
+		<div id="secondary" style="width: 600px;height:400px;"></div>
+
+		<!-- <h2>Chart</h2> -->
+		<div id="third" style="width: 600px;height:400px;"></div>
+
+
+    <script type="text/javascript">
+      // Initialize the echarts instance based on the prepared dom
+      var myBar = echarts.init(document.getElementById('main'));
+	  var myBar2 = echarts.init(document.getElementById('secondary'));
+
+    // Specify the configuration items and data for the chart
+	var option = {
+		xAxis: {
+			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		},
+		yAxis: {},
+		series: [
+			{
+			type: 'bar',
+			data: [550, 550, 550, 550, 890, 1090, 550]
+			}
+		]
+	};
+
+	var option2 = {
+		xAxis: {
+			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		},
+		yAxis: {},
+		series: [
+			{
+			type: 'bar',
+			data: [23, 24, 18, 25, 27, 28, 25]
+			},
+			{
+			type: 'bar',
+			data: [26, 24, 18, 22, 23, 20, 27]
+			}
+		]
+	};
+
+	// var myPie2 = echarts.init(document.getElementById('secondary'));
+	// var myPie3 = echarts.init(document.getElementById('third'));
+	// Display the chart using the configuration items and data just specified.
+	
+	myBar.setOption(option);
+	myBar2.setOption(option2);
+	// myPie3.setOption(option3);
+      
+    </script>
+  </body>
+	
+</html>

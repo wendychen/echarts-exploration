@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts - Bar Racing</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <h2></h2>
+
+		<h2>Bar Racing</h2>
+		<div id="main" style="width: 600px;height:300px;"></div>
+		
+		<!-- <h2>Customized Pie</h2> -->
+		<div id="secondary" style="width: 600px;height:400px;"></div>
+
+		<!-- <h2>Chart</h2> -->
+		<div id="third" style="width: 600px;height:400px;"></div>
+
+
+    <script type="text/javascript">
+      // Initialize the echarts instance based on the prepared dom
+      var myBar = echarts.init(document.getElementById('main'));
+
+      // Specify the configuration items and data for the chart
+      var data = [];
+			for (let i = 0; i < 5; ++i) {
+				data.push(Math.round(Math.random() * 200));
+			}
+
+			option = {
+			xAxis: {
+				max: 'dataMax'
+			},
+			yAxis: {
+				type: 'category',
+				data: ['A', 'B', 'C', 'D', 'E'],
+				inverse: true,
+				animationDuration: 300,
+				animationDurationUpdate: 300,
+				max: 2 // only the largest 3 bars will be displayed
+			},
+			series: [
+				{
+				realtimeSort: true,
+				name: 'X',
+				type: 'bar',
+				data: data,
+				label: {
+					show: true,
+					position: 'right',
+					valueAnimation: true
+				}
+				}
+			],
+			legend: {
+				show: true
+			},
+			animationDuration: 0,
+			animationDurationUpdate: 3000,
+			animationEasing: 'linear',
+			animationEasingUpdate: 'linear'
+			};
+
+			function run() {
+			var data = option.series[0].data;
+			for (var i = 0; i < data.length; ++i) {
+				if (Math.random() > 0.9) {
+				data[i] += Math.round(Math.random() * 2000);
+				} else {
+				data[i] += Math.round(Math.random() * 200);
+				}
+			}
+			myBar.setOption(option);
+			}
+
+			setTimeout(function() {
+			run();
+			}, 0);
+			setInterval(function() {
+			run();
+			}, 1000);
+
+		// var myBar2 = echarts.init(document.getElementById('secondary'));
+		// var myBar3 = echarts.init(document.getElementById('third'));
+    
+		// Display the chart using the configuration items and data just specified.
+		
+		// myBar2.setOption(option2);
+		// myBar3.setOption(option3);
+      
+    </script>
+  </body>
+	
+</html>
